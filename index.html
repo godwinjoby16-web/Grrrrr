@@ -4,6 +4,139 @@
 
 /* Winter Arc visual refresh */
 :root{--bg:#070d19;--p:#111f34;--line:#263d58;--c:#70dcff;--m:#a5b9cc;--w:#f0f7ff;--accent:#9a8cff}body{background:radial-gradient(ellipse at 15% -10%,#234c70 0,transparent 42%),radial-gradient(ellipse at 100% 20%,#302b60 0,transparent 34%),#070d19;letter-spacing:.005em}header{padding-top:25px}h1{font-size:1.12rem;letter-spacing:.18em}header:after{content:"";display:block;height:1px;background:linear-gradient(90deg,#70dcff66,transparent);margin-top:15px}nav{background:#080f1ded;backdrop-filter:blur(16px);border-bottom:1px solid #243b53;max-width:760px}nav button{border-radius:999px;background:#111f32;border-color:#263c55;color:#bfd0df}nav button.active{background:linear-gradient(120deg,#17618a,#393a78);border-color:#69d8ff;color:#fff;box-shadow:0 5px 18px #1d8fc533}.card{background:linear-gradient(145deg,#14253b 0%,#0c1728 100%);border-color:#2b4561;box-shadow:0 12px 30px #0003}.card h2,.card h3{letter-spacing:-.02em}.tag{color:#8fe3ff;font-weight:800}.big{ text-shadow:0 0 24px #4ac8ff33}.bar{background:#24374d}.bar span{background:linear-gradient(90deg,#42bce9,#9b91ff)}button{transition:transform .15s ease,filter .15s ease;background:#172b43;border-color:#35516d}button:active{transform:scale(.98)}button.primary{background:linear-gradient(120deg,#12638b,#45428b);border-color:#65cfff;box-shadow:0 6px 20px #1686b522}input,textarea,select{background:#091525;border-color:#304b67}label{font-weight:600}.learn-hero{padding:23px 20px;border:1px solid #3b6585;border-radius:22px;background:radial-gradient(circle at 90% 0,#4d4a9a66,transparent 45%),linear-gradient(135deg,#153c59,#17223f 70%,#10182b);box-shadow:0 18px 40px #0004;margin:10px 0 14px}.learn-hero h2{font-size:1.65rem;line-height:1.12;margin:10px 0}.learn-hero p{color:#c3d6e8;line-height:1.55;margin:0}.learn-hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}.learn-hero-stats div{background:#07142688;border:1px solid #ffffff18;border-radius:13px;padding:11px 8px}.learn-hero-stats strong{display:block;font-size:1.25rem;color:#8de4ff}.learn-hero-stats span{display:block;font-size:.7rem;color:#c0d0e0;margin-top:3px}.learn-recommend{border-color:#4b5c89;background:linear-gradient(130deg,#182d49,#171d39)}.lesson-progress{display:flex;align-items:center;gap:12px}.lesson-progress .bar{flex:1}.lesson-panel{border:1px solid #34506c;border-radius:20px;padding:17px;background:linear-gradient(160deg,#10243a,#0a1525);box-shadow:0 15px 36px #0003;margin:12px 0}.lesson-heading{display:flex;justify-content:space-between;align-items:center;gap:8px}.lesson-time{font-size:.68rem;color:#b3aaff;letter-spacing:.1em;font-weight:800}.lesson-panel>h2{font-size:1.55rem;line-height:1.15;margin:13px 0 6px}.lesson-aim{color:#a9c7dd;font-size:.92rem;margin:0 0 18px}.lesson-block{border-top:1px solid #2c435d;padding:16px 0 4px}.lesson-block h3{margin:5px 0 8px;font-size:1.05rem}.lesson-block p{line-height:1.65;white-space:pre-line}.lesson-step{font-size:.68rem;color:#80dfff;font-weight:900;letter-spacing:.12em}.example-block{background:#142b42aa;border:1px solid #284b69;border-radius:14px;padding:14px;margin:12px 0}.practice-block{padding-top:16px}.lesson-question{padding:13px 0;border-bottom:1px solid #29415b}.lesson-question:last-child{border-bottom:0}.lesson-question strong{display:block;line-height:1.45}.lesson-answer{display:none;margin-top:9px;padding:10px;border-left:3px solid #79dfff;background:#102b3c;border-radius:0 10px 10px 0;color:#d7edfa;line-height:1.55;white-space:pre-line}.lesson-answer.show{display:block}.secondary{background:#17263c;border-color:#4b6380}.view{animation:viewIn .24s ease}@keyframes viewIn{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}@media(max-width:380px){.learn-hero{padding:18px 15px}.learn-hero h2{font-size:1.4rem}.lesson-panel{padding:13px}.learn-hero-stats span{font-size:.65rem}}
+
+/* Premium productivity redesign v2 */
+:root{
+ color-scheme:dark;
+ --bg:#090d16;--surface:#111827;--surface-2:#151f30;--surface-3:#1b2940;
+ --line:#273449;--line-soft:#202c3e;--text:#f4f6fb;--muted:#94a3b8;
+ --accent:#a78bfa;--accent-2:#67e8f9;--good:#6ee7b7;--warn:#fbbf24;
+ --radius:18px;
+}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth}
+body{
+ margin:0;color:var(--text);background:
+ radial-gradient(900px 500px at 10% -20%,#31265b44,transparent 65%),
+ radial-gradient(700px 420px at 100% 0%,#164e6340,transparent 62%),var(--bg);
+ font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ font-size:15px;line-height:1.55;letter-spacing:0;
+}
+header,main,nav{max-width:1120px}
+header{padding:30px 24px 16px}
+header h1{font-size:1rem;letter-spacing:.16em;font-weight:850}
+header .tag{font-size:.68rem;color:#c4b5fd;letter-spacing:.14em}
+header:after{margin-top:18px;background:linear-gradient(90deg,#a78bfa55,#67e8f922,transparent)}
+#date{margin:7px 0 0;color:var(--muted);font-size:.85rem}
+nav{
+ top:0;padding:12px 20px;gap:8px;background:#090d16eF;
+ border-bottom:1px solid var(--line-soft);backdrop-filter:blur(20px);
+ max-width:none;justify-content:center;
+}
+nav button{
+ flex:0 0 auto;border:1px solid transparent;border-radius:12px;
+ background:transparent;color:#9eabc0;padding:10px 14px;
+ font-size:.84rem;font-weight:700;min-height:42px;box-shadow:none;
+}
+nav button:hover{background:#ffffff08;color:var(--text)}
+nav button.active{background:#a78bfa1c;color:#e8ddff;border-color:#a78bfa42;box-shadow:inset 0 0 0 1px #a78bfa0c}
+main{padding:18px 22px 64px}
+.view{max-width:100%;animation:viewIn .2s ease}
+.view> .card:first-child{margin-top:0}
+.card{
+ margin:12px 0;padding:20px;background:linear-gradient(155deg,#151f30f5,#101827f5);
+ border:1px solid var(--line-soft);border-radius:var(--radius);
+ box-shadow:0 8px 28px #00000018;
+}
+.card .card{background:#0d1625;border-color:#26354a;box-shadow:none}
+h2,h3{color:#f3f5fa;letter-spacing:-.035em;line-height:1.25}
+h2{font-size:1.28rem;margin:0 0 12px}
+h3{font-size:1.02rem;margin:0 0 10px}
+p{line-height:1.65}
+.muted,.small{color:var(--muted)}
+.tag{font-size:.68rem;font-weight:850;letter-spacing:.14em;color:#bba9ff}
+.big,.word{font-size:2.25rem;color:#d9ccff;letter-spacing:-.06em;font-weight:850;text-shadow:none}
+.bar{height:8px;background:#273449;border-radius:99px;margin:14px 0 4px}
+.bar span{background:linear-gradient(90deg,#a78bfa,#67e8f9);border-radius:99px}
+button{
+ border:1px solid #34435a;background:#1b2940;color:#e8edf7;
+ border-radius:12px;padding:11px 15px;min-height:43px;font-size:.88rem;
+ font-weight:700;box-shadow:none;transition:background .16s,border-color .16s,transform .16s;
+}
+button:hover{background:#263852;border-color:#536783}
+button:active{transform:translateY(1px) scale(.99)}
+button.primary{background:linear-gradient(120deg,#7658d8,#4f6fc4);border-color:#9880ee;color:white;box-shadow:0 5px 18px #7658d82b}
+button.primary:hover{filter:brightness(1.1)}
+button.secondary{background:#1b2940;border-color:#43536c}
+input,textarea,select{
+ width:100%;background:#0b1320;border:1px solid #2d3b50;border-radius:12px;
+ padding:12px 13px;color:var(--text);font:inherit;margin:6px 0 14px;
+ outline:none;transition:border-color .15s,box-shadow .15s;
+}
+input:focus,textarea:focus,select:focus{border-color:#a78bfa;box-shadow:0 0 0 3px #a78bfa20}
+textarea{min-height:100px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#718096}
+label{display:block;color:#c9d3e1;font-size:.82rem;font-weight:700;margin:8px 0 4px}
+label.check{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line-soft)}
+label.check input{width:19px;height:19px;margin:0;accent-color:#a78bfa;flex:0 0 auto}
+.grid{gap:12px}
+.row{gap:14px}
+.learn-hero{
+ padding:28px;border:1px solid #64549a;border-radius:22px;
+ background:radial-gradient(ellipse at 95% 5%,#8b5cf633,transparent 42%),linear-gradient(130deg,#252044,#17253b 65%,#102b38);
+ box-shadow:0 16px 44px #0003;margin:12px 0 16px;
+}
+.learn-hero h2{font-size:2rem;max-width:620px;letter-spacing:-.055em}
+.learn-hero p{max-width:620px;color:#c1cce0}
+.learn-hero-stats div{background:#080f1b77;border:1px solid #ffffff18;border-radius:14px;padding:13px}
+.learn-hero-stats strong{font-size:1.35rem;color:#d9ccff}
+.learn-recommend{background:linear-gradient(135deg,#211d3a,#15273a);border-color:#6656a0}
+.lesson-panel{background:linear-gradient(160deg,#141f31,#0e1726);border:1px solid #33435a;border-radius:20px;padding:22px}
+.lesson-panel>h2{font-size:1.7rem}
+.lesson-block{border-color:#29384d}
+.lesson-block p{color:#c4cfde}
+.example-block{background:#17263a;border-color:#344b68;border-radius:15px}
+.lesson-question{border-color:#2a394d;padding:16px 0}
+.lesson-answer{background:#112b2d;border-left-color:#6ee7b7;color:#d8f6eb;border-radius:0 12px 12px 0}
+#reviewCard{background:radial-gradient(ellipse at top,#242047,#101a2a 75%);border:1px solid #4b4776;border-radius:20px;padding:24px}
+#cardPrompt{font-size:1.45rem;max-width:620px;margin:16px auto;line-height:1.45}
+#cardAnswer{font-size:1.05rem;color:#dce8f5}
+.lesson-progress .bar{margin:0}
+#examTimer{font-variant-numeric:tabular-nums;font-size:3rem;color:#d9ccff}
+#examQuestion{border-color:#4b4776}
+#examPrompt{font-size:1.2rem;line-height:1.5}
+#studyHistory,#weeklySummary{line-height:1.8}
+.divider{height:1px;background:var(--line-soft);margin:18px 0}
+footer{color:#68788e}
+@media(min-width:900px){
+ body{min-height:100vh}
+ main{padding-top:24px}
+ #today{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:14px;align-items:start}
+ #today>.card{margin:0}
+ #today>.card:first-child{grid-column:1/-1}
+ #today>.card:nth-child(2){grid-column:1}
+ #today>.card:nth-child(3){grid-column:2}
+ .view#learn,.view#cards,.view#exam,.view#gcse,.view#reports{max-width:900px;margin:0 auto}
+}
+@media(max-width:700px){
+ header{padding:20px 16px 10px}
+ nav{justify-content:flex-start;padding:9px 12px;gap:5px}
+ nav button{padding:9px 12px;min-height:42px;font-size:.8rem}
+ main{padding:10px 12px 38px}
+ .card{padding:16px;margin:9px 0;border-radius:16px}
+ .learn-hero{padding:21px 18px;border-radius:18px}
+ .learn-hero h2{font-size:1.65rem}
+ .big,.word{font-size:2rem}
+ #reviewCard{padding:17px}
+ #examTimer{font-size:2.6rem}
+}
+@media(max-width:380px){
+ .grid{grid-template-columns:1fr}
+ .learn-hero-stats{gap:5px}
+ .learn-hero-stats div{padding:9px 6px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
 </style></head><body><header><div class="row"><h1>❄ WINTER ARC OS</h1><span class="tag">PERSONAL SYSTEM</span></div><p class="muted small" id="date"></p></header><nav><button class="active" data-tab="today">Today</button><button data-tab="learn">Learn</button><button data-tab="word">Word</button><button data-tab="jarvis">JARVIS</button><button data-tab="fitness">Fitness</button><button data-tab="gcse">GCSE</button><button data-tab="cards">Flashcards</button><button data-tab="exam">Exam practice</button><button data-tab="reports">Reports</button></nav><main>
 <section class="view active" id="today"><div class="card"><div class="tag">DAILY STATUS</div><div class="row"><div><div class="big" id="xp">0 XP</div><div class="muted small" id="count">0 of 8 habits</div></div><div style="font-size:2rem">◈</div></div><div class="bar"><span id="bar"></span></div></div><div class="card"><h2>Daily missions</h2><div id="habits"></div></div><div class="card"><h3>Today's focus</h3><textarea id="focus" placeholder="What matters most today?"></textarea><button id="saveFocus" class="primary">Save focus</button></div></section>
 <section class="view" id="word"><div class="card"><div class="tag">DAILY VOCABULARY</div><div class="word" id="wordTitle"></div><p class="muted" id="type"></p><p id="definition"></p><h3>Example</h3><p class="muted" id="example"></p><h3>Synonyms</h3><p class="muted" id="synonyms"></p><button id="speakWord" class="primary">🔊 Hear word</button> <button id="saveWord">☆ Save word</button></div><div class="card"><div class="row"><h3>Vocabulary streak</h3><strong id="streak">0 days</strong></div><button id="learn" class="primary">Mark learned today</button><h3>Saved words</h3><p id="saved" class="muted small">None yet.</p></div></section>
