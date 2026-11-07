@@ -557,7 +557,34 @@ function renderExamRecommendations(){let el=document.getElementById("examRecomme
 function renderWeekly(){let el=document.getElementById("weeklySummary"),dates=[];for(let i=0;i<7;i++){let d=new Date();d.setDate(d.getDate()-i);dates.push(d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"))}let total=0,minutes=0,done=0,by={};dates.forEach(k=>{let d=(data.days||{})[k];if(!d)return;done+=habits.filter(h=>d.habits&&d.habits[h[0]]).length;let sessions=d.study||[];minutes+=sessions.reduce((a,x)=>a+(+x.minutes||0),0);sessions.forEach(x=>{total++;by[x.subject]=(by[x.subject]||0)+(+x.minutes||0)})});let subjects=Object.keys(by).sort((a,b)=>by[b]-by[a]).map(k=>k+": "+by[k]+" min").join(" · ");el.textContent=minutes+" revision minutes · "+total+" sessions · "+done+" habits completed"+(subjects?"\nBy subject: "+subjects:"") }function render(){let d=day(),n=habits.filter(h=>d.habits[h[0]]).length;document.getElementById("xp").textContent=n*100+" XP";document.getElementById("count").textContent=n+" of 8 habits complete";document.getElementById("bar").style.width=n/8*100+"%";document.getElementById("reportXP").textContent=n*100+" XP";document.getElementById("reportHabits").textContent="Habits completed: "+n+"/8";document.getElementById("reportStudy").textContent="Revision logged today: "+(d.study||[]).reduce((a,x)=>a+(+x.minutes||0),0)+" minutes";document.getElementById("reportWorkout").textContent="Training: "+(d.workout||"Not logged");document.getElementById("habits").innerHTML="";habits.forEach(([id,name,desc])=>{let l=document.createElement("label");l.className="check";let c=document.createElement("input");c.type="checkbox";c.checked=!!d.habits[id];c.onchange=()=>{d.habits[id]=c.checked;save();render()};let span=document.createElement("span");span.innerHTML="<b>"+name+"</b><br><span class='muted small'>"+desc+"</span>";l.append(c,span);document.getElementById("habits").append(l)});document.getElementById("date").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",day:"numeric",month:"long",year:"numeric"}).toUpperCase();renderWord();renderStudyHistory();renderWeekly();renderGradeDashboard();renderMastery()}
 function wi(){let [y,m,d]=today().split("-").map(Number);return Math.floor(Date.UTC(y,m-1,d)/86400000)%words.length}function renderWord(){let w=words[wi()];["wordTitle","type","definition","example","synonyms"].forEach((id,i)=>document.getElementById(id).textContent=w[i]);document.getElementById("saved").textContent=(data.savedWords||[]).join(", ")||"None yet.";document.getElementById("streak").textContent=wordStreak()+" days"}
 function speak(t){if(!("speechSynthesis"in window)||!("SpeechSynthesisUtterance"in window)){return false}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang="en-GB";u.onerror=()=>{const status=document.getElementById("voiceStatus");if(status)status.textContent="Spoken audio is unavailable here. You can still read the response."};speechSynthesis.speak(u);return true}function briefing(){let n=habits.filter(h=>day().habits[h[0]]).length;return "Welcome to Winter Arc. You have completed "+n+" of 8 habits. Today's word is "+words[wi()][0]+". Keep making steady progress and remember to rest."}
-function cmd(t){let q=t.toLowerCase(),n=habits.filter(h=>day().habits[h[0]]).length,r;if(q.includes("progress")||q.includes("habit"))r="You have completed "+n+" out of 8 habits today, earning "+n*100+" XP.";else if(q.includes("word")){let w=words[wi()];r="Today's word is "+w[0]+". "+w[2]+" Example: "+w[3]}else if(q.includes("brief")||q.includes("today")||q.includes("schedule"))r=briefing();else if(q.includes("study")||q.includes("revision"))r="Your revision method is retrieve, learn, explain, apply, exam questions, mark, fix and retest.";else r="I can help with your progress, word of the day, revision method or daily briefing. Try: how is my progress?";document.getElementById("reply").textContent=r;return r}
+const JARVIS_CHAT_KEY="jarvisConversation_v1";
+let jarvisConversation=[];try{jarvisConversation=JSON.parse(localStorage.getItem(JARVIS_CHAT_KEY)||"[]");if(!Array.isArray(jarvisConversation))jarvisConversation=[];}catch(e){jarvisConversation=[];}
+function saveJarvisConversation(){try{localStorage.setItem(JARVIS_CHAT_KEY,JSON.stringify(jarvisConversation.slice(-16)));}catch(e){}}
+function localJarvisReply(t){
+ const q=t.toLowerCase(),n=habits.filter(h=>day().habits[h[0]]).length;
+ if(q.includes("progress")||q.includes("habit"))return "You've completed "+n+" out of 8 habits today, earning "+n*100+" XP.";
+ if(q.includes("word")){const w=words[wi()];return "Today's word is "+w[0]+". "+w[2]+" Example: "+w[3];}
+ if(q.includes("brief")||q.includes("today")||q.includes("schedule"))return briefing();
+ if(q.includes("study")||q.includes("revision"))return "Your revision method is retrieve, learn, explain, apply, exam questions, mark, fix and retest.";
+ return "I can still check your Winter Arc progress, word of the day and revision method. For a genuinely open conversation, connect the secure JARVIS AI service.";
+}
+async function cmd(t){
+ const clean=(t||"").trim();if(!clean)return "";
+ jarvisConversation.push({role:"user",content:clean});jarvisConversation=jarvisConversation.slice(-16);saveJarvisConversation();
+ try{
+  const response=await fetch("./api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:jarvisConversation.slice(-12)})});
+  const payload=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(payload.error||"AI service unavailable");
+  const answer=(payload.reply||"").trim();if(!answer)throw new Error("The AI returned an empty response");
+  jarvisConversation.push({role:"assistant",content:answer});jarvisConversation=jarvisConversation.slice(-16);saveJarvisConversation();
+  document.getElementById("reply").textContent=answer;return answer;
+ }catch(error){
+  jarvisConversation.pop();saveJarvisConversation();
+  const answer=localJarvisReply(clean);
+  document.getElementById("reply").textContent=answer+"\n\n(Conversational AI is not connected yet. The secure /api/chat service must be deployed.)";
+  return answer;
+ }
+}
 document.querySelectorAll("nav button").forEach(b=>{b.setAttribute("aria-controls",b.dataset.tab);b.setAttribute("aria-current",b.classList.contains("active")?"page":"false");b.onclick=()=>{document.querySelectorAll("nav button").forEach(x=>{const active=x===b;x.classList.toggle("active",active);x.setAttribute("aria-current",active?"page":"false")});document.querySelectorAll(".view").forEach(x=>{const active=x.id===b.dataset.tab;x.classList.toggle("active",active);x.setAttribute("aria-hidden",String(!active))});render()}});
 document.querySelectorAll(".learn-shortcuts [data-tab]").forEach(b=>b.onclick=()=>document.querySelector('nav button[data-tab="'+b.dataset.tab+'"]')?.click());
 document.querySelectorAll(".learn-route-link[data-tab]").forEach(b=>b.onclick=()=>document.querySelector('nav button[data-tab="'+b.dataset.tab+'"]')?.click());renderCards();renderExam();
@@ -576,13 +603,12 @@ function setJarvisVoiceState(state,message){
  button.setAttribute("aria-label",state==="listening"?"Stop speaking to JARVIS":"Start speaking to JARVIS");
  button.setAttribute("aria-pressed",String(state==="listening"));
 }
-function handleJarvisCommand(text){
+async function handleJarvisCommand(text){
  const clean=(text||"").trim();if(!clean)return;
  document.getElementById("command").value=clean;
- setJarvisVoiceState("processing","Got it — one moment");
- const answer=cmd(clean);
- if(answer)speak(answer);
- setJarvisVoiceState("ready","Response ready");
+ setJarvisVoiceState("processing","Got it — thinking…");
+ try{const answer=await cmd(clean);if(answer)speak(answer);setJarvisVoiceState("ready","Ready for your next message");}
+ catch(error){setJarvisVoiceState("ready","I couldn't reach the AI service. You can try again or type your message.");}
 }
 document.getElementById("brief").onclick=()=>{const message=briefing();document.getElementById("reply").textContent=message;if(!speak(message))document.getElementById("voiceStatus").textContent="Audio playback is unavailable. Your briefing is shown above.";};
 document.getElementById("run").onclick=()=>{const value=document.getElementById("command").value;if(value.trim())handleJarvisCommand(value)};
