@@ -194,7 +194,49 @@ input,textarea,select{width:100%;background:#0b1220;border:1px solid #34435a;bor
 #today>.card:first-child{background:radial-gradient(ellipse at 100% 0,#7565cb2c,transparent 50%),linear-gradient(145deg,#171d31,#111927)}#habits .check{padding:13px 0}#reviewCard{padding:21px;border-radius:22px}#cardPrompt{font-size:1.35rem;line-height:1.5}#cardAnswer{font-size:1rem;line-height:1.7}#examTimer{font-size:2.8rem;color:#d2c8ff}.jarvis-shell{max-width:700px;margin:auto}
 @media(min-width:850px){main{padding-top:25px}#today{display:grid;grid-template-columns:1fr 1fr;gap:14px}#today>.card{margin:0}#today>.card:first-child{grid-column:1/-1}}
 @media(max-width:600px){header{padding:18px 16px 8px}main{padding:10px 13px 120px}.card{padding:17px;border-radius:19px;margin:9px 0}nav{width:calc(100% - 16px);bottom:max(7px,env(safe-area-inset-bottom));padding:6px;border-radius:19px}nav button{flex:1 0 57px;min-width:54px;min-height:52px;font-size:.61rem;padding:5px 2px}.learn-welcome{padding:23px 18px;border-radius:22px}.learn-welcome h2{font-size:1.9rem}.learn-metrics div{padding:9px 7px}.learn-metrics strong{font-size:1.2rem}.lesson-panel{padding:17px}.lesson-panel>h2{font-size:1.55rem}.grid{gap:8px}.big,.word{font-size:2rem}}
-@media(max-width:380px){.learn-metrics span{font-size:.62rem}.lesson-time{font-size:.56rem}.learn-shortcuts{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}</style></head><body><header><div class="row"><h1>❄ WINTER ARC OS</h1><span class="tag">PERSONAL SYSTEM</span></div><p class="muted small" id="date"></p></header><nav><button class="active" data-tab="today">Today</button><button data-tab="learn">Learn</button><button data-tab="word">Word</button><button data-tab="jarvis">JARVIS</button><button data-tab="fitness">Fitness</button><button data-tab="gcse">GCSE</button><button data-tab="cards">Flashcards</button><button data-tab="exam">Exam practice</button><button data-tab="reports">Reports</button></nav><main>
+@media(max-width:380px){.learn-metrics span{font-size:.62rem}.lesson-time{font-size:.56rem}.learn-shortcuts{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+/* JARVIS app-quality interface refresh */
+#jarvis{max-width:100%;padding-bottom:18px}
+#jarvis .jarvis-shell{max-width:620px;margin:0 auto}
+#jarvis .jarvis-top{padding:8px 2px 22px;align-items:center}
+#jarvis .jarvis-top .tag{display:inline-flex;align-items:center;gap:7px;color:#c9bcff;font-size:.65rem;letter-spacing:.16em}
+#jarvis .jarvis-top .tag:before{content:"";width:7px;height:7px;border-radius:50%;background:#75e5bd;box-shadow:0 0 12px #75e5bd}
+#jarvis .jarvis-top h2{font-size:2.35rem;letter-spacing:-.075em;margin:2px 0 1px}
+#jarvis .jarvis-top p{font-size:.84rem;color:#9eacc2}
+#jarvis .jarvis-orb{width:54px;height:54px;border-radius:18px;font-size:1.35rem;background:linear-gradient(145deg,#b5a5ff,#725bd1 60%,#344b83);box-shadow:0 8px 26px #8b78f044, inset 0 1px 0 #ffffff88}
+#jarvis .jarvis-voice-card{padding:30px 20px 24px;border-radius:28px;border:1px solid #665a9a;background:radial-gradient(ellipse at 50% 0,#8c73ed35,transparent 58%),linear-gradient(160deg,#1c2340 0%,#121c30 58%,#101827 100%);box-shadow:0 22px 55px #0005,inset 0 1px 0 #ffffff0d}
+#jarvis .jarvis-live-row{width:max-content;max-width:100%;margin:0 auto;padding:8px 13px;border:1px solid #ffffff15;border-radius:99px;background:#080f1c88;color:#c5d0e2;font-size:.76rem}
+#jarvis .jarvis-mic{width:126px;height:126px;margin:25px auto 15px;border:1px solid #d2c8ffb0;background:radial-gradient(circle at 32% 24%,#d6cbff 0,#a18af5 24%,#765ed2 62%,#51418e 100%);box-shadow:0 0 0 8px #a78bfa12,0 0 0 17px #a78bfa09,0 16px 36px #0007,inset 0 2px 5px #ffffff66}
+#jarvis .jarvis-mic svg{width:40px;height:40px;filter:drop-shadow(0 2px 4px #30245c88)}
+#jarvis .jarvis-mic-label{font-size:1.12rem;letter-spacing:-.035em}
+#jarvis .jarvis-hint{font-size:.78rem;color:#9eacc2}
+#jarvis .jarvis-wave{height:28px}
+#jarvis .jarvis-suggestions{padding:24px 2px 13px}
+#jarvis .jarvis-section-label{font-size:.65rem;letter-spacing:.16em;color:#9baac1}
+#jarvis .jarvis-chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+#jarvis .jarvis-chips button{min-height:46px;border-radius:14px;text-align:left;padding:10px 13px;background:linear-gradient(145deg,#18253a,#121d2e);border-color:#2d405b;color:#d4deed;font-size:.78rem}
+#jarvis .jarvis-chips button:before{content:"✦";color:#b5a5ff;margin-right:8px}
+#jarvis .jarvis-chips button:hover{border-color:#8878c9;background:#242744}
+#jarvis .jarvis-reply-card{margin:8px 0 13px;padding:18px;border-radius:20px;background:linear-gradient(145deg,#17243a,#111a2a);border-color:#30415a;box-shadow:0 10px 30px #0002}
+#jarvis .jarvis-avatar{width:40px;height:40px;border-radius:14px;background:linear-gradient(145deg,#b09cff,#6652b9);box-shadow:0 5px 16px #8b78f044}
+#jarvis .jarvis-reply-head strong{font-size:.82rem;letter-spacing:.1em}
+#jarvis .jarvis-reply-text{font-size:.91rem;color:#dce5f2;line-height:1.75}
+#jarvis .jarvis-brief-btn{border-radius:99px;background:#282344;border-color:#5a4d8a}
+#jarvis .jarvis-type{border-radius:17px;background:#111a29;border-color:#2b3c53}
+#jarvis .jarvis-type summary{padding:15px 17px}
+#jarvis .jarvis-privacy{padding:0 4px;color:#8190a7;font-size:.7rem}
+#jarvis> .card{max-width:620px;margin:15px auto;background:#111a29;border-color:#29394f}
+#jarvis .jarvis-mic:focus-visible,#jarvis button:focus-visible{outline:3px solid #b9a8ff;outline-offset:4px}
+@media(max-width:420px){
+ #jarvis .jarvis-top h2{font-size:2.1rem}
+ #jarvis .jarvis-voice-card{padding:25px 14px 20px;border-radius:23px}
+ #jarvis .jarvis-mic{width:116px;height:116px}
+ #jarvis .jarvis-chips{gap:7px}
+ #jarvis .jarvis-chips button{font-size:.73rem;padding:9px 10px;min-height:44px}
+ #jarvis .jarvis-reply-card{padding:15px}
+}
+@media(min-width:760px){#jarvis .jarvis-voice-card{padding-top:36px;padding-bottom:29px}#jarvis .jarvis-mic{width:138px;height:138px}}
+</style></head><body><header><div class="row"><h1>❄ WINTER ARC OS</h1><span class="tag">PERSONAL SYSTEM</span></div><p class="muted small" id="date"></p></header><nav><button class="active" data-tab="today">Today</button><button data-tab="learn">Learn</button><button data-tab="word">Word</button><button data-tab="jarvis">JARVIS</button><button data-tab="fitness">Fitness</button><button data-tab="gcse">GCSE</button><button data-tab="cards">Flashcards</button><button data-tab="exam">Exam practice</button><button data-tab="reports">Reports</button></nav><main>
 <section class="view active" id="today"><div class="card"><div class="tag">DAILY STATUS</div><div class="row"><div><div class="big" id="xp">0 XP</div><div class="muted small" id="count">0 of 8 habits</div></div><div style="font-size:2rem">◈</div></div><div class="bar"><span id="bar"></span></div></div><div class="card"><h2>Daily missions</h2><div id="habits"></div></div><div class="card"><h3>Today's focus</h3><textarea id="focus" placeholder="What matters most today?"></textarea><button id="saveFocus" class="primary">Save focus</button></div></section>
 <section class="view" id="learn">
 <div class="learn-welcome"><div class="eyebrow">YOUR GCSE LEARNING SPACE</div><h2>Learn it. Understand it. <span>Own it.</span></h2><p>Focused lessons that build real understanding before exam practice.</p><div class="learn-metrics"><div><strong id="lessonCount">0</strong><span>lessons saved</span></div><div><strong id="lessonBest">—</strong><span>latest result</span></div><div><strong>5</strong><span>daily flashcards</span></div></div></div>
