@@ -170,6 +170,17 @@ footer{color:#68788e}
 .jarvis-reply-head strong{font-size:.86rem;letter-spacing:.04em}.jarvis-reply-head .small{font-size:.72rem}
 .jarvis-brief-btn{margin-left:auto;min-height:35px;padding:7px 11px;font-size:.75rem;background:#242342;border-color:#51477a}
 .jarvis-reply-text{font-size:.92rem;color:#d5dfed;line-height:1.7;margin:15px 0 2px}
+.jarvis-messages{display:flex;flex-direction:column;gap:10px;max-height:360px;overflow:auto;padding:12px 2px 4px;scroll-behavior:smooth}
+.jarvis-message{max-width:92%;padding:11px 13px;border-radius:15px;font-size:.88rem;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.jarvis-message.user{align-self:flex-end;background:#39305f;border:1px solid #66549b;color:#f3efff;border-bottom-right-radius:5px}
+.jarvis-message.assistant{align-self:flex-start;background:#1b2a3d;border:1px solid #34475f;color:#e0e9f5;border-bottom-left-radius:5px}
+.jarvis-message-label{display:block;margin-bottom:3px;font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.jarvis-type{padding-bottom:5px}
+.jarvis-type summary{display:none}
+.jarvis-type-row{padding:10px 10px 0}
+.jarvis-type-row input{margin:0 0 8px}
+.jarvis-type-row button{margin:0 0 8px;min-width:66px}
+
 .jarvis-type{margin:14px 0;border:1px solid #29394f;border-radius:15px;background:#111a29}
 .jarvis-type summary{padding:13px 15px;cursor:pointer;color:#c1cde0;font-size:.85rem;font-weight:750}
 .jarvis-type[open]{padding-bottom:5px}.jarvis-type-row{display:flex;align-items:center;gap:8px;padding:0 12px}
@@ -542,7 +553,7 @@ main{padding-bottom:calc(145px + env(safe-area-inset-bottom))!important}
 <section class="view" id="jarvis"><div class="jarvis-shell">
 <div class="jarvis-system-head"><div><div class="jarvis-kicker">PERSONAL AI OPERATING SYSTEM</div><div class="jarvis-brand">JARVIS<span> / CORE</span></div><p class="jarvis-subtitle">Your day. Your learning. One intelligent workspace.</p></div><div class="jarvis-core-mark" aria-hidden="true"><span>J</span></div></div>
 <div class="jarvis-system-status" aria-label="JARVIS system overview"><div class="jarvis-status-title"><span>SYSTEM STATUS</span><span class="jarvis-online"><i></i> ONLINE</span></div><div class="jarvis-status-grid"><div><span class="jarvis-status-icon">◉</span><strong>VOICE</strong><small>READY</small></div><div><span class="jarvis-status-icon">⌁</span><strong>LEARNING</strong><small>ACTIVE</small></div><div><span class="jarvis-status-icon">▦</span><strong>WORKSPACE</strong><small>SYNCED</small></div></div></div>
-<div class="jarvis-top"><div><div class="tag">YOUR PERSONAL ASSISTANT</div><h2>JARVIS</h2><p class="muted small">A quicker way to check in, plan and stay on track.</p></div><div class="jarvis-orb" aria-hidden="true"><span>J</span></div></div><div class="jarvis-voice-card"><div class="jarvis-live-row"><span class="jarvis-status-dot" id="voiceDot"></span><span id="voiceStatus" aria-live="polite">Ready when you are</span></div><button id="listen" class="jarvis-mic" type="button" aria-label="Start speaking to JARVIS"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="12" rx="3"></rect><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5M8.5 21.5h7"></path></svg></button><div class="jarvis-mic-label" id="micLabel">Tap to speak</div><p class="jarvis-hint">Ask naturally. Tap again to stop listening.</p><div class="jarvis-wave" id="voiceWave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="jarvis-suggestions"><div class="jarvis-section-label">TRY ASKING</div><div class="jarvis-chips"><button type="button" data-jarvis-prompt="How is my progress?">My progress</button><button type="button" data-jarvis-prompt="What is today's word?">Word of the day</button><button type="button" data-jarvis-prompt="Help me with revision">Revision method</button><button type="button" data-jarvis-prompt="Give me my daily briefing">Daily briefing</button></div></div><div class="jarvis-reply-card"><div class="jarvis-reply-head"><div class="jarvis-avatar">J</div><div><strong>JARVIS</strong><div class="muted small">Assistant response</div></div><button id="brief" class="jarvis-brief-btn" type="button">▶ Briefing</button></div><p id="reply" class="jarvis-reply-text" aria-live="polite">Hello. I'm ready to help you stay organised. Tap the microphone and ask me something.</p></div><details class="jarvis-type"><summary>Prefer to type?</summary><div class="jarvis-type-row"><input id="command" aria-label="Type a message for JARVIS" placeholder="Message JARVIS…" autocomplete="off"><button id="run" class="primary" type="button">Send</button></div></details><p class="jarvis-privacy">Voice recognition depends on your browser. Some browsers process speech online; typed commands remain available as an alternative.</p>
+<div class="jarvis-top"><div><div class="tag">YOUR PERSONAL ASSISTANT</div><h2>JARVIS</h2><p class="muted small">A quicker way to check in, plan and stay on track.</p></div><div class="jarvis-orb" aria-hidden="true"><span>J</span></div></div><div class="jarvis-voice-card"><div class="jarvis-live-row"><span class="jarvis-status-dot" id="voiceDot"></span><span id="voiceStatus" aria-live="polite">Ready when you are</span></div><button id="listen" class="jarvis-mic" type="button" aria-label="Start speaking to JARVIS"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="12" rx="3"></rect><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5M8.5 21.5h7"></path></svg></button><div class="jarvis-mic-label" id="micLabel">Tap to speak</div><p class="jarvis-hint">Ask naturally. Tap again to stop listening.</p><div class="jarvis-wave" id="voiceWave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="jarvis-suggestions"><div class="jarvis-section-label">TRY ASKING</div><div class="jarvis-chips"><button type="button" data-jarvis-prompt="How is my progress?">My progress</button><button type="button" data-jarvis-prompt="What is today's word?">Word of the day</button><button type="button" data-jarvis-prompt="Help me with revision">Revision method</button><button type="button" data-jarvis-prompt="Give me my daily briefing">Daily briefing</button></div></div><div class="jarvis-reply-card"><div class="jarvis-reply-head"><div class="jarvis-avatar">J</div><div><strong>JARVIS</strong><div class="muted small">Assistant response</div></div><button id="brief" class="jarvis-brief-btn" type="button">▶ Briefing</button></div><div id="jarvisMessages" class="jarvis-messages" role="log" aria-live="polite" aria-relevant="additions text"><div class="jarvis-message assistant"><span class="jarvis-message-label">JARVIS</span>Hello. Talk to me normally — ask a question, tell me what you are working on, or follow up on something we discussed.</div></div><p id="reply" class="jarvis-reply-text" aria-live="polite" hidden></p></div><div class="jarvis-type"><div class="jarvis-type-row"><input id="command" aria-label="Message JARVIS" placeholder="Message JARVIS…" autocomplete="off"><button id="run" class="primary" type="button">Send</button></div></div><p class="jarvis-privacy">Voice recognition depends on your browser. Some browsers process speech online; typed commands remain available as an alternative.</p>
 <div class="jarvis-footer-status"><span>JARVIS CORE</span><span>PERSONAL SYSTEM · MOBILE EDITION</span><span class="jarvis-footer-light">●</span></div>
 </div><div class="card"><h3>Notifications</h3><p class="muted small">Allow and test a notification. Reliable scheduled alerts while closed need extra Android/push infrastructure.</p><button id="notify">Enable / test notification</button><p id="notifyStatus" class="muted small"></p></div></section>
 <section class="view" id="fitness"><div class="card"><h2>Fitness log</h2><select id="workout"><option>Rest / recovery</option><option>Upper body</option><option>Lower body + core</option><option>Full body</option><option>RAF conditioning</option></select><textarea id="fitnessNote" placeholder="Exercises, how it felt, recovery..."></textarea><button id="saveFitness" class="primary">Save fitness log</button><p id="fitnessStatus" class="muted small"></p></div></section>
@@ -560,6 +571,19 @@ function speak(t){if(!("speechSynthesis"in window)||!("SpeechSynthesisUtterance"
 const JARVIS_CHAT_KEY="jarvisConversation_v1";
 let jarvisConversation=[];try{jarvisConversation=JSON.parse(localStorage.getItem(JARVIS_CHAT_KEY)||"[]");if(!Array.isArray(jarvisConversation))jarvisConversation=[];}catch(e){jarvisConversation=[];}
 function saveJarvisConversation(){try{localStorage.setItem(JARVIS_CHAT_KEY,JSON.stringify(jarvisConversation.slice(-16)));}catch(e){}}
+function renderJarvisHistory(){
+ const host=document.getElementById("jarvisMessages");if(!host)return;
+ host.textContent="";
+ const items=jarvisConversation.slice(-16);
+ if(!items.length){const welcome=document.createElement("div");welcome.className="jarvis-message assistant";welcome.textContent="Hello. Talk to me normally — ask a question, tell me what you are working on, or follow up on something we discussed.";host.append(welcome);return;}
+ items.forEach(item=>{
+  const bubble=document.createElement("div");bubble.className="jarvis-message "+(item.role==="user"?"user":"assistant");
+  const label=document.createElement("span");label.className="jarvis-message-label";label.textContent=item.role==="user"?"You":"JARVIS";
+  const body=document.createElement("span");body.textContent=item.content;
+  bubble.append(label,body);host.append(bubble);
+ });
+ host.scrollTop=host.scrollHeight;
+}
 function localJarvisReply(t){
  const q=t.toLowerCase(),n=habits.filter(h=>day().habits[h[0]]).length;
  if(q.includes("progress")||q.includes("habit"))return "You've completed "+n+" out of 8 habits today, earning "+n*100+" XP.";
@@ -570,19 +594,21 @@ function localJarvisReply(t){
 }
 async function cmd(t){
  const clean=(t||"").trim();if(!clean)return "";
- jarvisConversation.push({role:"user",content:clean});jarvisConversation=jarvisConversation.slice(-16);saveJarvisConversation();
+ jarvisConversation.push({role:"user",content:clean});jarvisConversation=jarvisConversation.slice(-16);saveJarvisConversation();renderJarvisHistory();
+ const reply=document.getElementById("reply");
  try{
   const response=await fetch("./api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:jarvisConversation.slice(-12)})});
   const payload=await response.json().catch(()=>({}));
-  if(!response.ok)throw new Error(payload.error||"AI service unavailable");
-  const answer=(payload.reply||"").trim();if(!answer)throw new Error("The AI returned an empty response");
-  jarvisConversation.push({role:"assistant",content:answer});jarvisConversation=jarvisConversation.slice(-16);saveJarvisConversation();
-  document.getElementById("reply").textContent=answer;return answer;
+  if(!response.ok)throw new Error(payload.error||"JARVIS AI is unavailable");
+  const answer=(payload.reply||"").trim();if(!answer)throw new Error("JARVIS returned an empty response");
+  jarvisConversation.push({role:"assistant",content:answer});jarvisConversation=jarvisConversation.slice(-16);saveJarvisConversation();renderJarvisHistory();
+  if(reply)reply.textContent=answer;return answer;
  }catch(error){
-  jarvisConversation.pop();saveJarvisConversation();
-  const answer=localJarvisReply(clean);
-  document.getElementById("reply").textContent=answer+"\n\n(Conversational AI is not connected yet. The secure /api/chat service must be deployed.)";
-  return answer;
+  jarvisConversation.pop();saveJarvisConversation();renderJarvisHistory();
+  const message=error.message==="Failed to fetch"?"I can't reach the JARVIS AI server. Check your connection, or make sure this app is deployed with its secure AI service.":error.message;
+  if(reply)reply.textContent=message;
+  setJarvisVoiceState("ready",message);
+  return "";
  }
 }
 document.querySelectorAll("nav button").forEach(b=>{b.setAttribute("aria-controls",b.dataset.tab);b.setAttribute("aria-current",b.classList.contains("active")?"page":"false");b.onclick=()=>{document.querySelectorAll("nav button").forEach(x=>{const active=x===b;x.classList.toggle("active",active);x.setAttribute("aria-current",active?"page":"false")});document.querySelectorAll(".view").forEach(x=>{const active=x.id===b.dataset.tab;x.classList.toggle("active",active);x.setAttribute("aria-hidden",String(!active))});render()}});
@@ -612,7 +638,7 @@ async function handleJarvisCommand(text){
 }
 document.getElementById("brief").onclick=()=>{const message=briefing();document.getElementById("reply").textContent=message;if(!speak(message))document.getElementById("voiceStatus").textContent="Audio playback is unavailable. Your briefing is shown above.";};
 document.getElementById("run").onclick=()=>{const value=document.getElementById("command").value;if(value.trim())handleJarvisCommand(value)};
-document.getElementById("command").onkeydown=e=>{if(e.key==="Enter")document.getElementById("run").click()};
+document.getElementById("command").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();document.getElementById("run").click()}};renderJarvisHistory();
 document.querySelectorAll("[data-jarvis-prompt]").forEach(b=>b.addEventListener("click",()=>handleJarvisCommand(b.dataset.jarvisPrompt)));
 document.getElementById("listen").onclick=()=>{
  if(jarvisListening&&jarvisRecognition){jarvisRecognition.stop();setJarvisVoiceState("processing","Finishing up…");return}
