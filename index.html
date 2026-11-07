@@ -72,9 +72,9 @@ function renderLearning(){
  document.getElementById("lessonBest").textContent=latest?latest.rating:"—";
  document.getElementById("learningHistory").textContent=history.length?history.slice(-10).reverse().map(x=>x.date+" · "+x.subject+" · "+x.topic+" — "+x.rating+(x.note?"\nNext: "+x.note:"")).join("\n\n"):"Your completed lessons will appear here.";
  const scored={};history.forEach(x=>{scored[x.key]=x});
- const priority=learningLibrary.find(x=>!scored[lessonKey(x)]||scored[lessonKey(x)].rating!=="Secure")||learningLibrary[0];
+ const studyLogs=allStudy(),dueLog=studyLogs.find(x=>(x.reviewDate&&x.reviewDate<=today())||x.weakness);let priority=dueLog?learningLibrary.find(x=>x.subject===dueLog.subject&&(x.topic.toLowerCase().includes((dueLog.topic||"").toLowerCase())||(dueLog.topic||"").toLowerCase().includes(x.topic.toLowerCase()))):null;priority=priority||learningLibrary.find(x=>!scored[lessonKey(x)]||scored[lessonKey(x)].rating!=="Secure")||learningLibrary[0];
  document.getElementById("learnNextTitle").textContent=priority.topic;
- document.getElementById("learnNextText").textContent=priority.subject+" · "+(!scored[lessonKey(priority)]?"Not studied yet":"Needs another practice session");
+ document.getElementById("learnNextText").textContent=(dueLog?"Your revision log flags "+(dueLog.topic||"a topic")+" for attention. ":"")+priority.subject+" · "+(!scored[lessonKey(priority)]?"Not studied yet":"Needs another practice session")+(dueLog&&dueLog.weakness?" · Fix: "+dueLog.weakness:"");
  document.getElementById("learnNextButton").onclick=()=>{subjectEl.value=priority.subject;renderLearning();topicEl.value=priority.topic;renderLearning();};
 }
 document.getElementById("learnSubject").addEventListener("change",renderLearning);
@@ -85,6 +85,7 @@ function saveLessonRating(rating){
  if(!item)return;
  const note=rating==="Secure"?"Review again in 3 days.":rating==="Practise"?"Relearn the explanation, then retry the questions.":"Return to the worked example and rebuild the idea.";
  lessonHistory().push({key:lessonKey(item),subject,topic,rating,date:today(),answers:item.qs.map((q,i)=>document.getElementById("lessonAnswer"+i)?.value||""),note});
+ data.flashcards=data.flashcards||[];item.qs.forEach(q=>{if(!data.flashcards.some(c=>c.subject===subject&&c.front===q[0]))data.flashcards.push({id:"learn"+Date.now()+Math.random().toString(36).slice(2,7),subject,front:q[0],back:q[1],level:0,due:today()})});
  if(rating!=="Secure"){data.studyPriorities=data.studyPriorities||[];data.studyPriorities.unshift({subject,topic,date:today(),reason:note});data.studyPriorities=data.studyPriorities.slice(0,30)}
  save();renderLearning();
  document.getElementById("lessonSaveStatus").textContent=rating==="Secure"?"Saved. This is a good result — schedule a short retrieval check in 3 days.":"Saved. This topic will stay near the top of your next-study recommendations.";
