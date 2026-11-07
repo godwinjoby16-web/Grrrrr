@@ -373,6 +373,84 @@ main{padding-bottom:calc(145px + env(safe-area-inset-bottom))!important}
   nav,nav>button{scroll-behavior:auto!important;transition:none!important}
 }
 
+
+/* JARVIS — refined violet command interface */
+#jarvis .jarvis-shell{max-width:680px}
+#jarvis .jarvis-system-head{padding:12px 4px 22px}
+#jarvis .jarvis-kicker{color:#b7a8ff;font-size:.64rem;letter-spacing:.19em}
+#jarvis .jarvis-brand{font-size:clamp(2.25rem,9vw,3.35rem);letter-spacing:.13em;color:#f5f2ff;text-shadow:0 0 28px #9b83ff55}
+#jarvis .jarvis-brand span{color:#b9a8ff}
+#jarvis .jarvis-subtitle{color:#aab5ca}
+#jarvis .jarvis-core-mark{
+ background:radial-gradient(circle at 35% 28%,#e0d7ff 0,#a18af5 19%,#6550ba 43%,#17213b 72%);
+ border-color:#b8a7ff99;color:#fff;
+ box-shadow:0 0 0 7px #a78bfa12,0 0 34px #8d75f055,inset 0 0 20px #ffffff40
+}
+#jarvis .jarvis-core-mark:before,#jarvis .jarvis-core-mark:after{border-color:#b9a8ff70}
+#jarvis .jarvis-system-status{
+ border-color:#4a426e;
+ background:linear-gradient(125deg,#1b1b35,#101a2b 75%);
+ box-shadow:0 14px 34px #0004,inset 0 1px #ffffff0a
+}
+#jarvis .jarvis-status-title{color:#c2b5ff}
+#jarvis .jarvis-online{color:#75e5bd}
+#jarvis .jarvis-status-grid>div{border-color:#373452;background:#111a2b}
+#jarvis .jarvis-status-icon{color:#b6a5ff}
+#jarvis .jarvis-status-grid strong{color:#e2def7}
+#jarvis .jarvis-status-grid small{color:#80dfc2}
+#jarvis .jarvis-top{display:none}
+#jarvis .jarvis-voice-card{
+ border-color:#68599a;
+ background:radial-gradient(ellipse at 50% -8%,#a28aff42,transparent 58%),linear-gradient(155deg,#1b203a,#111b2d 70%,#101827);
+ box-shadow:0 22px 54px #0006,inset 0 1px #ffffff12
+}
+#jarvis .jarvis-live-row{background:#0a1020aa;border-color:#ffffff1c;color:#d6d0ee}
+#jarvis .jarvis-mic{
+ position:relative;isolation:isolate;
+ background:radial-gradient(circle at 35% 26%,#eee9ff 0,#c2b2ff 17%,#8d75e7 43%,#59449f 72%,#25294c 100%);
+ border-color:#d8ceff;
+ box-shadow:0 0 0 8px #a78bfa16,0 0 0 17px #a78bfa0d,0 0 42px #9278f066,inset 0 2px 7px #fff8
+}
+#jarvis .jarvis-mic:before,#jarvis .jarvis-mic:after{
+ content:"";position:absolute;inset:-13px;border:1px solid #b8a7ff44;border-radius:50%;z-index:-1;pointer-events:none
+}
+#jarvis .jarvis-mic:after{inset:-22px;border-color:#a78bfa24}
+#jarvis .jarvis-mic:hover{background:radial-gradient(circle at 35% 26%,#fff 0,#d6caff 18%,#a28df5 46%,#6954b7 75%);box-shadow:0 0 0 9px #a78bfa1c,0 0 48px #9278f088}
+#jarvis .jarvis-mic.is-listening{
+ background:radial-gradient(circle at 35% 26%,#fff0f4 0,#ffb5d0 22%,#d85c91 58%,#642c62 100%);
+ border-color:#ffd0e1;box-shadow:0 0 0 10px #f472b622,0 0 42px #e76aa477;
+ animation:jarvisPulse 1.8s ease-out infinite
+}
+#jarvis .jarvis-mic.is-listening:before{border-color:#ffb3d477}
+#jarvis .jarvis-mic svg{stroke:#fff}
+#jarvis .jarvis-wave i{background:#c3b5ff}
+#jarvis .jarvis-section-label{color:#b8a8ff}
+#jarvis .jarvis-chips button{background:linear-gradient(145deg,#1b2340,#121c30);border-color:#3d4264;color:#e1dcf5}
+#jarvis .jarvis-chips button:before{color:#b8a8ff}
+#jarvis .jarvis-chips button:hover{background:#292647;border-color:#9b87e8}
+#jarvis .jarvis-reply-card{background:linear-gradient(145deg,#1a2338,#111a2b);border-color:#3b4561}
+#jarvis .jarvis-avatar{background:linear-gradient(145deg,#c5b7ff,#745cc5 65%,#343b68);box-shadow:0 5px 18px #8b78f044}
+#jarvis .jarvis-reply-head strong{color:#f0edff}
+#jarvis .jarvis-reply-text{color:#e1e6f2}
+#jarvis .jarvis-brief-btn{background:#282344;border-color:#66568f;color:#d7ccff}
+#jarvis .jarvis-type{background:#111a2b;border-color:#39435d}
+#jarvis .jarvis-type summary{color:#d5caff}
+#jarvis .jarvis-type-row input{background:#0b1322;border-color:#3a4560;color:#f4f2ff}
+#jarvis .jarvis-privacy{color:#8f9bb1}
+#jarvis .jarvis-footer-status{color:#7e89a4}
+#jarvis .jarvis-footer-light{color:#75e5bd}
+#jarvis> .card{background:linear-gradient(145deg,#171f33,#101827);border-color:#303d56}
+@media(max-width:520px){
+ #jarvis .jarvis-system-head{padding:8px 2px 17px}
+ #jarvis .jarvis-brand{font-size:2.05rem;letter-spacing:.1em}
+ #jarvis .jarvis-core-mark{flex-basis:58px;width:58px;height:58px}
+ #jarvis .jarvis-system-status{padding:12px 10px}
+ #jarvis .jarvis-status-grid>div{padding:9px 3px}
+ #jarvis .jarvis-voice-card{padding:24px 13px 19px}
+ #jarvis .jarvis-mic{width:118px;height:118px}
+}
+@media(prefers-reduced-motion:reduce){#jarvis .jarvis-mic:before,#jarvis .jarvis-mic:after{animation:none!important}}
+
 </style></head><body><header><div class="row"><h1>❄ WINTER ARC OS</h1><span class="tag">PERSONAL SYSTEM</span></div><p class="muted small" id="date"></p></header><nav><button class="active" data-tab="today">Today</button><button data-tab="learn">Learn</button><button data-tab="word">Word</button><button data-tab="jarvis">JARVIS</button><button data-tab="fitness">Fitness</button><button data-tab="gcse">GCSE</button><button data-tab="cards">Flashcards</button><button data-tab="exam">Exam practice</button><button data-tab="reports">Reports</button></nav><main>
 <section class="view active" id="today"><div class="card"><div class="tag">DAILY STATUS</div><div class="row"><div><div class="big" id="xp">0 XP</div><div class="muted small" id="count">0 of 8 habits</div></div><div style="font-size:2rem">◈</div></div><div class="bar"><span id="bar"></span></div></div><div class="card"><h2>Daily missions</h2><div id="habits"></div></div><div class="card"><h3>Today's focus</h3><textarea id="focus" placeholder="What matters most today?"></textarea><button id="saveFocus" class="primary">Save focus</button></div></section>
 <section class="view" id="learn">
