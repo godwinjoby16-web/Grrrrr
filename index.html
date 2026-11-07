@@ -633,7 +633,7 @@ async function handleJarvisCommand(text){
  const clean=(text||"").trim();if(!clean)return;
  document.getElementById("command").value=clean;
  setJarvisVoiceState("processing","Got it — thinking…");
- try{const answer=await cmd(clean);if(answer)speak(answer);setJarvisVoiceState("ready","Ready for your next message");}
+ try{const answer=await cmd(clean);if(answer){speak(answer);setJarvisVoiceState("ready","Ready for your next message");}}
  catch(error){setJarvisVoiceState("ready","I couldn't reach the AI service. You can try again or type your message.");}
 }
 document.getElementById("brief").onclick=()=>{const message=briefing();document.getElementById("reply").textContent=message;if(!speak(message))document.getElementById("voiceStatus").textContent="Audio playback is unavailable. Your briefing is shown above.";};
