@@ -641,7 +641,7 @@ function renderLearnRoute(){
  if(!percent||!bar)return;
  percent.textContent=pct+"%";bar.style.width=pct+"%";
  const ring=document.querySelector("#learn .learn-route-ring");
- if(ring)ring.style.background="radial-gradient(circle at center,#151b2e 58%,transparent 60%),conic-gradient(#ad9bff "+(pct*3.6)+"deg,#34334f 0deg)";
+ if(ring)ring.style.background="radial-gradient(circle at center,#151b2e 58%,transparent 60%),conic-gradient(#ad9bff 0deg "+(pct*3.6)+"deg,#34334f "+(pct*3.6)+"deg 360deg)";
  document.getElementById("learnDailyCards").textContent=doneCards+" / 5 cards";
  document.getElementById("learnDailyLesson").textContent=lessonDone?"Lesson logged today":"Lesson not logged";
  document.getElementById("learnDailyExam").textContent=examDone?todayExams.length+" attempt"+(todayExams.length===1?"":"s")+" today":"No exam attempt yet";
